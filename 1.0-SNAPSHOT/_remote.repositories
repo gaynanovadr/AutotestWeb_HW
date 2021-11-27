@@ -1,0 +1,4 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Sat Nov 27 11:05:19 CET 2021
+example-1.0-SNAPSHOT.jar>=
+example-1.0-SNAPSHOT.pom>=
