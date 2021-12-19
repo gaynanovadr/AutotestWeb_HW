@@ -40,7 +40,7 @@ public class JavaRushTest {
     }
 
     @Test
-    void openCourseAndLectures() throws InterruptedException { //open lectures
+    void openCourseAndLectures() throws InterruptedException { //test of opening a lecture
         login();
 
         driver.findElement(By.xpath("//a[@href=\"/quests\" and @class=\"sidebar-nav-link\"]")).click();
@@ -51,11 +51,10 @@ public class JavaRushTest {
     }
 
     @Test
-    void writeCommentOnLectures() throws InterruptedException {
+    void writeCommentOnLectures() throws InterruptedException { //test of leaving a comment
         login();
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath("//div[@class=\"article__discussion\"]")));
-        //Thread.sleep(4000);
         WebElement commentField = driver.findElement(By.xpath("//div[@class=\"article__discussion\"]"));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", commentField);
 
@@ -65,7 +64,7 @@ public class JavaRushTest {
         driver.findElement(By.xpath("//textarea[@placeholder=\"Введите текст комментария\"]")).sendKeys("It was easy!");
         driver.findElement(By.xpath("//button[@class=\"ng-star-inserted button button--success button--sm-wide\"]")).click();
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[text()=\" (1)\"]")));
-        Assertions.assertEquals(driver.findElement(By.xpath("//div[text()=\" (1)\"]")).isDisplayed(), true);
+        Assertions.assertEquals(driver.findElement(By.xpath("//div[text()=\" (1)\"]")).isDisplayed(), true); //make sure +1 comment is added
         assertThat(driver.findElement(By.xpath("//div[text()=\" (1)\"]")), isDisplayed());
     }
 
