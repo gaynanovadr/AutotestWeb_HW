@@ -32,8 +32,6 @@ public class JavaRashTest {
         mainPage = new MainPage(driver);
         loginBlock = new LoginBlock(driver);
 
-        //webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        //actions = new Actions(driver);
         driver.get(JAVARUSH_BASE_URL);
         driver.manage().window().maximize();
     }
@@ -46,7 +44,13 @@ public class JavaRashTest {
                 .fillLoginInput("gaynanovadr@mail.ru")
                 .fillPasswordInput("40Rem5060")
                 .submitLoginButton();
+        new PersonalPage(driver)
+                .scrollToComments()
+                .leaveComment("Its Selenium Test")
+                .submitComment()
+                .checkCommentIsDisplayed();
     }
+   
 
     @AfterEach
     void tearDown() {
