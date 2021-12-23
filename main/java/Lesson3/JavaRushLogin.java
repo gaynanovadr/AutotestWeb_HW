@@ -20,24 +20,21 @@ public class JavaRushLogin {
         options.addArguments("--disable-notifications");
         WebDriver driver = new ChromeDriver(options);
         driver.get("https://javarush.ru/");
+        driver.manage().timeouts().implicityWait(3,TimeUnit.SECONDS);
 
-        //login into account (нужен полноэкранный режим)
+        //login into account (maximize the window)
         WebElement headerLogin = driver.findElement(By.id("button_menu_start_learning_unauthorized_user"));
         headerLogin.click();
         driver.findElement(By.id("id_button_jr_welcome_proceeding_to_login")).click();
-        Thread.sleep(3000);
         driver.findElement(By.xpath("//input[@name=\"email\"]")).sendKeys("gaynanovadr@mail.ru");
-        driver.findElement(By.xpath("//input[@name=\"password\"]")).sendKeys("40Rem5060");
-        Thread.sleep(3000);
+        driver.findElement(By.xpath("//input[@name=\"password\"]")).sendKeys("****");
         driver.findElement(By.id("button_auth_form_sign_in")).click();
         Thread.sleep(7000);
 
         //opening the course and adding comment
         driver.findElement(By.xpath("//a[@href=\"/quests\"]")).click();
-        Thread.sleep(2000);
         driver.findElement(By.xpath("//a[@href=\"/quests/lectures\"]")).click();
-        Thread.sleep(5000);
-
+        
         driver.findElement(By.xpath("//a[@href=\"https://javarush.ru/quests/lectures/questsyntaxpro.level01.lecture01\"]")).click();
 
         Wait<WebDriver> wait = new FluentWait<>(driver)
@@ -49,8 +46,8 @@ public class JavaRushLogin {
         driver.findElement(By.xpath("//textarea[@placeholder=\"Введите текст комментария\"]")).click();
         driver.findElement(By.xpath("//textarea[@placeholder=\"Введите текст комментария\"]")).sendKeys("It was easy!");
         driver.findElement(By.xpath("//b[text()=\"Отправить\"]")).click();
-
-
+        
+        driver.quit();
 
 
 
